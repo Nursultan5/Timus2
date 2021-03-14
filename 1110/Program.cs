@@ -25,7 +25,7 @@ namespace _1110
                         b *= a;
                     }
                     b = b % (BigInteger)m;
-                    if (b ==gfg (BigInteger)y) { rez.Add(i); flag = true; }
+                    if (b ==gfg (BigInteger)) { rez.Add(i); flag = true; }
                 
             }
             String s = "";
@@ -48,8 +48,15 @@ namespace _1110
             int n = int.Parse(s.Split()[0]);
             int m = int.Parse(s.Split()[1]);
             int y = int.Parse(s.Split()[2]);
-            Gen(n, m, y);
-            //Console.ReadLine();
+
+            for (int i = 0; i < m; i++)
+            {
+
+            }
+
+
+
+            Console.ReadLine();
         }
     }
 }

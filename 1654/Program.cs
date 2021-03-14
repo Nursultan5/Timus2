@@ -10,39 +10,28 @@ namespace _1654
     {
         static void Main(string[] args)
         {
+
             string input = Console.ReadLine();
-            input = "1" + input;
 
-            Stack<char> db1 = new Stack<char>();
-            Stack<char> db2 = new Stack<char>();
+            List<char> listInput = new List<char>();
 
-            db2.Push('1');
-            foreach (char t in input.ToCharArray())
+            for (int i = 0; i < input.Length; i++)
             {
-                db1.Push(t);
-            }
-            while (db1.Count > 1)
-            {
-                char t = db1.Pop();
-                db2.Push(t);
-                char a = db1.Peek();
-                char b = db2.Peek();
-                if (a == b)
+
+                if (listInput.Count > 0 && input[i] == listInput.Last())
                 {
-                    db1.Pop();db2.Pop();db1.Push(db2.Pop());
+                    listInput.RemoveAt(listInput.Count - 1);
                 }
-                db2.Push(db1.Pop());
+                else listInput.Add(input[i]);
+            }
 
-            }
-            // db2.Push(db1.Pop());
-            int ts = db2.Count;
-            for (int i = 0; i <ts; i++)
+            foreach (var item in listInput)
             {
-                Console.Write( db2.Pop());
+                Console.Write(item);
             }
-            
-            
+
             Console.ReadLine();
+
 
         }
     }

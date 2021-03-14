@@ -8,21 +8,48 @@ namespace _1601
 {
     class Program
     {
-        public static bool check(char a)
+        public static bool checkForLetter(char a)
         {
             bool flag = false;
-            if ((a == '!') || (a == '.') || (a == '?')) flag = true;
-            return flag; 
+            if (a >= 97 && a <= 122 || (a >= 65 && a <= 90)) flag = true;
+            return flag;
+        }
+        public static bool checkForBigLetter(char a)
+        {
+            bool flag = false;
+            if (a >= 65 && a <= 90) flag = true;
+            return flag;
+        }
+
+        public static bool checkForSmallLetter(char a)
+        {
+            bool flag = false;
+            if (a >= 97 && a <= 122) flag = true;
+            return flag;
         }
         static void Main(string[] args)
         {
-            char[] s = Console.ReadLine().ToLower().ToCharArray();
-            s[0] =Convert.ToChar( s[0].ToString().ToUpper());
-            for (int i=1;i< s.Length-1;i++)
+            bool flagUp = true;
+
+            char[] s = Console.ReadLine().ToCharArray();
+            for (int i = 0; i < s.Length; i++)
             {
-                if ((s[i].ToString()==".")&&(s[i+1].ToString()==" ")) s[i+2] = Convert.ToChar(s[i+2].ToString().ToUpper());
+                if (checkForBigLetter(s[i]) && flagUp) flagUp = false;
+                else if (checkForBigLetter(s[i]) && !flagUp) { flagUp = false; s[i] = (char)(s[i] + 32); }
+
+                else if (checkForSmallLetter(s[i]) && flagUp)
+                {
+                    flagUp = false;
+                    s[i] = (char)(s[i] - 32);
+                }
+                else if (s[i] == '.' || s[i] == '!' || s[i] == '?')
+                {
+                    flagUp = true;
+
+                }
+
             }
-            
+
             Console.WriteLine(s);
             Console.ReadLine();
         }
